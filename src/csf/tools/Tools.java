@@ -9,22 +9,6 @@ import csf.entity.MyForm;
 
 public class Tools {
 	
-	public final static String getBasePath(){
-    	File f = new File("empty.txt");
-    	if(!f.exists()){
-    		try{
-    			f.createNewFile();
-    		}catch(Exception e){
-    			e.printStackTrace();
-    		}
-    	}
-    	String ap = f.getAbsolutePath();
-    	System.out.println(ap);
-    	String rp = ap.substring(0,ap.indexOf("\\csf"));
-    	f.delete();
-    	return rp;
-    }
-	
 	public final static void createFiles(String path,String content) throws Exception{
 		File file = new File(path);
 		if(file.exists()){
@@ -32,7 +16,7 @@ public class Tools {
 		}else{
 			file.createNewFile();
 			DataOutputStream dos = new DataOutputStream(new FileOutputStream(file));
-			dos.writeUTF(content);
+			dos.write(content.getBytes());
 			dos.flush();
 			dos.close();
 		}
